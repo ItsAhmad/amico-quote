@@ -17,6 +17,10 @@ h2 {
   justify-content: center;
 }
 
+body {
+  background-color: black;
+}
+
 .salesperson-wrapper {
   display: block;
   margin-left: 25px !important;
