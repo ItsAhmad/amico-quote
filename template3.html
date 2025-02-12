@@ -99,13 +99,13 @@
   <style>
     .pdfobject-container {height: 500px; }
   </style>
-  <div id="my-pdf"></div>
+  <div id="MLED65"></div>
   <script src="https://unpkg.com/pdfobject"></script>
   <script>
-    let options = {
-      page: 2
+    var options = {
+      pdfOpenParams: {page: '2'}
     };
-  PDFObject.embed("https://docs.amico.com/amico-alt-mira-65-led-exam-light-ceiling-mounted-specs.pdf", "#my-pdf");
+  PDFObject.embed("https://docs.amico.com/amico-alt-mira-65-led-exam-light-ceiling-mounted-specs.pdf", "#MLED65", options);
   </script>
 
 
