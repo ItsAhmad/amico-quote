@@ -119,37 +119,7 @@
   <div id="pdf-container" class="pdfobject-container"></div>
   <script src="https://unpkg.com/pdfobject"></script>
 
-  <div class="w3-section">
-    <label>Mounting Options</label>
-    <br>
-    <input class="w3-radio" type="radio" value="male">
-    <label>Ceiling Mount</label>
-    <br>
-    <br>
-
-    <label>Quantity of Lightheads</label>
-    <br>
-    <input class="w3-radio" type="radio" value="female">
-    <label>Single Ceiling Mount</label>
-    <br>
-    <input class="w3-radio" type="radio" name="spring-arm-size" value="">
-    <label> Dual Ceiling Mount</label>
-    <br>
-    <br>
-    <label>Spring Arm Size</label>
-    <br>
-    <input class="w3-radio" type="radio" value="female">
-    <label>Standard Length</label>
-    <br>
-    <input class="w3-radio" type="radio" value="female">
-    <label>Extended Length</label>
-    <br>
-    <br>
-    <label>Wall Control Keypad</label>
-    <br>
-    <input class="w3-radio" type="radio" value="female">
-    <label>Wall Control</label>
-  </div>
+  <div id="checkbox-container"></div>
 
   <div class="w3-section">
     <label>Full Part #: </label>
@@ -221,18 +191,46 @@
       "Clarity50": "https://docs.amico.com/amico-alt-clarity-50-led-exam-light-specs.pdf"
     };
 
+    const productOptionsHTML = {
+      "SolarEclipse24Multi": `
+      <h3>Voltage</h3>
+      <label><input type="checkbox" value="120"> 120V</label><br>
+      <label><input type="checkbox" value="270"> 270V</label><br>
+
+      <h3>Functions</h3>
+      <label><input type="checkbox" value="AL111"> AL111</label><br>
+      <label><input type="checkbox" value="AL112"> AL112</label><br>
+      <label><input type="checkbox" value="AL121"> AL121</label><br>
+      <label><input type="checkbox" value="AL122"> AL122</label><br>
+      <label><input type="checkbox" value="AL211"> AL211</label><br>
+      <label><input type="checkbox" value="AL222"> AL222</label><br>
+
+      <h3>Color Temperature</h3>
+      <label><input type="checkbox" value="3000k"> 3000K</label><br>
+      <label><input type="checkbox" value="3500k"> 3500K</label><br>
+      <label><input type="checkbox" value="4000k"> 4000K</label><br>
+    `,
+    };
+
 
     $('#product-list').on('change', function () {
-      const selectedValues = $(this).val(); 
-      const pdfUrl = pdfMap[selectedValues];
+      const selectedProduct = $(this).val(); // Get selected product
+      const pdfUrl = pdfMap[selectedProduct]; // Get the PDF URL
+      const options = productOptionsHTML[selectedProduct] || "<p>No Options Available</p>"; // Get product-specific options
 
-      if (pdfUrl) {
-        PDFObject.embed(pdfUrl, "#pdf-container", options);
-        document.getElementById("pdf-container").style.display = "block";
-      }
-    });
+
+  // Load the PDF
+    if (pdfUrl) {
+      PDFObject.embed(pdfUrl, "#pdf-container");
+      $("#pdf-container").show();
+    } else {
+      $("#pdf-container").hide();
+    }
+
+    $("#checkbox-container").html(options)
+
   });
+});
 </script>
-
 </body>
 </html>
